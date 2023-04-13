@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import millify from 'millify'
 import { Link } from 'react-router-dom'
 import { Row, Col, Input, Card } from 'antd'
+import Loader from './Loader'
 
 import { useGetCryptosQuery } from '../services/cryptoApi'
 
@@ -10,6 +11,7 @@ const Cryptocurrencies = ({ simplified }) => {
    const { data: cryptosList, isFetching } = useGetCryptosQuery(count);
    const [cryptos, setCryptos] = useState(cryptosList?.data?.coins);
    const [searchTeam, setSearchTeam] = useState('');
+
 
    useEffect(() => {
       const filterdData = cryptosList?.data?.coins.filter((coin) => coin.name.toLowerCase().includes(searchTeam.toLowerCase()));
@@ -20,7 +22,7 @@ const Cryptocurrencies = ({ simplified }) => {
    // console.log('crypto', cryptos);
 
 
-   if (isFetching) return "Loading ...";
+   if (isFetching) return <Loader/>
 
    return (
       <>

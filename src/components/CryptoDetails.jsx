@@ -7,6 +7,7 @@ import { MoneyCollectOutlined, DollarCircleOutlined, FundOutlined, ExclamationCi
 
 import { useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } from '../services/cryptoApi'
 import LineChart from './LineChart.jsx'
+import Loader from './Loader'
 
 const { Title, Text } = Typography;
 const { Option } = Select;
@@ -38,9 +39,9 @@ const CryptoDetails = () => {
     { title: 'Circulating Supply', value: `$ ${cryptoDetails?.supply?.circulating && millify(cryptoDetails?.supply?.circulating)}`, icon: <ExclamationCircleOutlined /> },
   ];
 
-  console.log(cryptoDetails)
+  console.log('history', coinHistory)
 
-  if (isFetching) return "Loading...";
+  if (isFetching) return <Loader/>
 
   return (
     <Col className="coin-detail-container">

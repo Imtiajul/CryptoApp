@@ -5,6 +5,7 @@ import { Link  } from 'react-router-dom';
 import {Cryptocurrencies, News } from './index'
 
 import { useGetCryptosQuery } from '../services/cryptoApi';
+import Loader from './Loader';
 
 const { Title } = Typography;
 
@@ -13,7 +14,7 @@ const Homepage = () => {
 console.log(data?.data);
   const globalStates = data?.data?.stats;
 
-  if(isFetching) return "Loading ..."
+  if(isFetching) return <Loader/>
   return (
     <>
       <Title level={1} className="heading">Global Crypto States</Title>
